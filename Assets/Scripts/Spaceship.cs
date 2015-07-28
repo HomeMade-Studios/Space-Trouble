@@ -5,7 +5,7 @@ public class Spaceship : MonoBehaviour {
 
 	public float jumpSpeed;
 	public bool isJumping;
-	public GameObject shipFragment;
+	public GameObject[] shipFragments;
 
 	void Start () {
 		isJumping = false;
@@ -40,7 +40,7 @@ public class Spaceship : MonoBehaviour {
 	void Destroy(){
 		Destroy(this.gameObject);
 		for(int i = 0; i < 10; i++){
-			Instantiate(shipFragment, transform.position, Quaternion.identity);
+			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
 		}
 		Time.timeScale = 5f;
 	}
