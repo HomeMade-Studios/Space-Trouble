@@ -38,11 +38,12 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void Destroy(){
-		Destroy(this.gameObject);
+		Camera.main.GetComponent<AudioSource>().Play();
 		for(int i = 0; i < 10; i++){
 			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
 		}
 		Time.timeScale = 5f;
+		Destroy(this.gameObject);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
