@@ -45,13 +45,6 @@ public class Spaceship : MonoBehaviour {
 		Time.timeScale = 5f;
 	}
 
-	void OnCollisionEnter2D(Collision2D other){
-		if(other.gameObject.tag == "Obstacle")
-			Destroy();
-		if(other.gameObject.tag == "DangerZone")
-			Time.timeScale = 1f;
-	}
-
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject.tag == "Obstacle")
 			Destroy();
