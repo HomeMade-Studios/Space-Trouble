@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Levels : MonoBehaviour {
+public class LevelsList : MonoBehaviour {
 
-	public Slider spaceshipSlider;
+	public Slider spaceshipBar;
 	Button[] levelButtons;
 	int completedLevels;
 
@@ -16,16 +16,30 @@ public class Levels : MonoBehaviour {
 		for(int i = 0; i < levelButtons.Length; i++){
 			if(i <= completedLevels){
 				levelButtons[i].interactable = true;
-				levelButtons[i].transform.GetComponentInChildren<Text>().text = (i+1).ToString();
+
 			}
 			else{
 				levelButtons[i].interactable = false;
-				levelButtons[i].transform.GetComponentInChildren<Text>().text = "?";
 			}
+			levelButtons[i].transform.GetComponentInChildren<Text>().text = (i).ToString() + " km";
 		}
 
-		//SET SPACESHIP SLIDER LEVEL
-		spaceshipSlider.value = completedLevels;
+		InvokeRepeating("IncreaseSpaceshipBar", 0.25f, 0.01f);
+	}
+
+	public void Update(){
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			Application.LoadLevel("MainMenu");
+		}
+	}
+
+	void IncreaseSpaceshipBar() {
+		if(spaceshipBar.value < completedLevels){
+			spaceshipBar.value += 0.1f;
+		}
+		else{
+			CancelInvoke("IncreaseSpaceshipBar");
+		}
 	}
 
 	public void selectLevel(int level){
