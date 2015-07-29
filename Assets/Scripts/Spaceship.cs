@@ -46,6 +46,10 @@ public class Spaceship : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
+	public void DisableAnimator(){
+		GetComponent<Animator>().enabled = false;
+	}
+
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject.tag == "Obstacle")
 			Destroy();
