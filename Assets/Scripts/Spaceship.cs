@@ -7,20 +7,20 @@ public class Spaceship : MonoBehaviour {
 	public bool isJumping;
 	public GameObject[] shipFragments;
 
-	void Start () {
+	void Awake () {
 		isJumping = false;
 		Time.timeScale = 5f;
 	}
 
 	void Update () {
 		if(!isJumping){
-			if(CheckJumpInput()){
+			if(CheckInput()){
 				Jump ();
 			}
 		}
 	}
 
-	bool CheckJumpInput(){
+	bool CheckInput(){
 		if(Input.GetKeyDown(KeyCode.Space)){
 			return true;
 		}
@@ -39,6 +39,7 @@ public class Spaceship : MonoBehaviour {
 
 	void Destroy(){
 		Camera.main.GetComponent<AudioSource>().Play();
+		LevelController.playerIsDead = true;
 		for(int i = 0; i < 10; i++){
 			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
 		}
@@ -53,8 +54,21 @@ public class Spaceship : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject.tag == "Obstacle")
 			Destroy();
+
 		if(other.gameObject.tag == "DangerZone")
 			Time.timeScale = 1f;
+
+		if(other.gameObject.tag == "Finish"){
+			int completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
+			int currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
+			if(currentLevel == completedLevels){
+				PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
+			}
+			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
+
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
 	}
 
 	void OnTriggerExit2D(Collider2D other){

@@ -23,22 +23,13 @@ public class LevelsList : MonoBehaviour {
 			}
 			levelButtons[i].transform.GetComponentInChildren<Text>().text = (i).ToString() + " km";
 		}
-
-		InvokeRepeating("IncreaseSpaceshipBar", 0.25f, 0.01f);
+		spaceshipBar.maxValue = MainMenu.maxLevel;
+		spaceshipBar.value = completedLevels;
 	}
 
 	public void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			Application.LoadLevel("MainMenu");
-		}
-	}
-
-	void IncreaseSpaceshipBar() {
-		if(spaceshipBar.value < completedLevels){
-			spaceshipBar.value += 0.1f;
-		}
-		else{
-			CancelInvoke("IncreaseSpaceshipBar");
 		}
 	}
 

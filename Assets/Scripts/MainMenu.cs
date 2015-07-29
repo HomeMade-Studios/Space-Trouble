@@ -5,10 +5,10 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
-	int maxLevel = 50;
+	public static int maxLevel = 20;
 
 	void Awake(){
-		PlayerPrefs.SetInt("completedLevels", 1);
+		PlayerPrefs.DeleteAll(); ///ELIMINARE PER LA BUILD FINALE!!
 		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
 	}
 
