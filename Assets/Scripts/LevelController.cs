@@ -17,7 +17,7 @@ public class LevelController : MonoBehaviour {
 			Application.LoadLevel("MainMenu");
 		}
 		if(playerIsDead){
-			Invoke("Retry", 15f);
+			Invoke("Retry", 25f);
 			if(CheckInput()){
 				Retry();
 			}
