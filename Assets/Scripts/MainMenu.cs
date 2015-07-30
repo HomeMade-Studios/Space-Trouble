@@ -40,6 +40,14 @@ public class MainMenu : MonoBehaviour {
 		welcomeMessagePanel.SetActive(false);
 	}
 
+	public void OpenHomeMadeStudiosPlayStore(){
+		Application.OpenURL("https://play.google.com/store/apps/dev?id=8610543020411511969");
+	}
+
+	public void OpenAlexandrZhelanovSoundCloud(){
+		Application.OpenURL("");
+	}
+
 	public void ToLevelSelection(){
 		Application.LoadLevel("LevelSelection");
 	}
