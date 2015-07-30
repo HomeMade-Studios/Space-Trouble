@@ -65,9 +65,11 @@ public class Spaceship : MonoBehaviour {
 			if(currentLevel == completedLevels){
 				PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
 			}
-			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
-
-			Application.LoadLevel(Application.loadedLevel);
+			if(currentLevel < MainMenu.maxLevel - 1){
+				PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
+				Application.LoadLevel(Application.loadedLevel);
+			}else
+				Application.LoadLevel("LevelSelection");
 		}
 
 	}

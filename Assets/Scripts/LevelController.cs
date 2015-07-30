@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour {
 
 	void Update (){
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			Application.LoadLevel("MainMenu");
+			Application.LoadLevel("LevelSelection");
 		}
 		if(playerIsDead){
 			Invoke("Retry", 25f);

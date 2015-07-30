@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 	public static int maxLevel = 10;
 
 	void Awake(){
-		PlayerPrefs.DeleteAll(); ///ELIMINARE PER LA BUILD FINALE!!
+		//PlayerPrefs.DeleteAll(); ///ELIMINARE PER LA BUILD FINALE!!
 		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
 	}
 
