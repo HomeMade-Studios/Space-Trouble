@@ -5,7 +5,7 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
-	public GameObject startMessage;
+	public GameObject welcomeMessagePanel, creditsPanel;
 	public static int maxLevel = 10;
 
 	void Awake(){
@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour {
 		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.SetInt("firstTime", 0);
-			ActiveStartMessage();
+			OpenWelcomeMessagePanel();
 		}
 		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
 	}
@@ -24,8 +24,20 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	public void ActiveStartMessage(){
-		startMessage.SetActive(true);
+	public void OpenCreditsPanel() {
+		creditsPanel.SetActive(true);
+	}
+
+	public void CloseCreditsPanel() {
+		creditsPanel.SetActive(false);
+	}
+
+	public void OpenWelcomeMessagePanel(){
+		welcomeMessagePanel.SetActive(true);
+	}
+
+	public void CloseWelcomeMessagePanel(){
+		welcomeMessagePanel.SetActive(false);
 	}
 
 	public void ToLevelSelection(){
