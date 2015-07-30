@@ -5,7 +5,7 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
-	public static int maxLevel = 20;
+	public static int maxLevel = 10;
 
 	void Awake(){
 		PlayerPrefs.DeleteAll(); ///ELIMINARE PER LA BUILD FINALE!!
