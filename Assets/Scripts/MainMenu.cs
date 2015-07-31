@@ -41,15 +41,15 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OpenGamePlayStore(){
-		Application.OpenURL("http://play.google.com/store/apps/dev?id=8610543020411511969");
+		Application.OpenURL("https://play.google.com/store/apps/details?id=com.homemadestudios.spacetrouble");
 	}
 
 	public void OpenHomeMadeStudiosPlayStore(){
-		Application.OpenURL("http://play.google.com/store/apps/dev?id=8610543020411511969");
+		Application.OpenURL("https://play.google.com/store/apps/dev?id=8610543020411511969");
 	}
 
 	public void OpenAlexandrZhelanovSoundCloud(){
-		Application.OpenURL("http://soundcloud.com/alexandr-zhelanov");
+		Application.OpenURL("https://soundcloud.com/alexandr-zhelanov");
 	}
 
 	public void ToLevelSelection(){
