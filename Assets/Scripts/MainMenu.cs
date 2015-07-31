@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OpenAlexandrZhelanovSoundCloud(){
-		Application.OpenURL("");
+		Application.OpenURL("https://soundcloud.com/alexandr-zhelanov");
 	}
 
 	public void ToLevelSelection(){
