@@ -3,10 +3,13 @@ using System.Collections;
 
 public class LevelController : MonoBehaviour {
 
-	public GameObject spaceship, spaceShipPrefab;
+	public GameObject spaceship, spaceshipPrefab;
 
 	void Awake () {
 		InstantiateDangerZone();
+	}
+
+	void Start () {
 		Spawn();
 	}
 	
@@ -15,7 +18,9 @@ public class LevelController : MonoBehaviour {
 			ToLevelSelection();
 		}
 		if(spaceship.gameObject == null){
-			Invoke("Respawn", 5f);
+			if(GameObject.FindGameObjectsWithTag("Fragment").Length == 0){
+				Spawn();
+			}
 		}
 	}
 
@@ -26,14 +31,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	void Spawn(){
-		spaceship = Instantiate(spaceShipPrefab, new Vector3(0,-105,0), Quaternion.identity) as GameObject;
-	}
-
-	void Respawn(){
-		GameObject[] fragments = GameObject.FindGameObjectsWithTag("Fragment");
-		for (int i = 0; i < fragments.Length; i++) {
-			fragments[i].GetComponent<Fragment>().Rebuild();
-		}
+		spaceship = Instantiate(spaceshipPrefab, new Vector3(0,-105,0), Quaternion.identity) as GameObject;
 	}
 
 	void ToLevelSelection() {

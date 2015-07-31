@@ -3,13 +3,14 @@ using System.Collections;
 
 public class Fragment : MonoBehaviour {
 
-	public float rebuildSpeed;
+	float rebuildSpeed = 12f;
 	float rotationSpeed;
 	Vector2 movementSpeed;
 	bool isRebuilding;
 	Rigidbody2D thisRigidbody;
 
 	void Awake () {
+		Invoke("Rebuild", 5f);
 		isRebuilding = false;
 		thisRigidbody = GetComponent<Rigidbody2D>();
 

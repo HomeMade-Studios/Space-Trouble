@@ -7,9 +7,10 @@ public class Spaceship : MonoBehaviour {
 	public bool isJumping;
 	public GameObject[] shipFragments;
 
-	void Start () {
+	void Awake () {
 		isJumping = false;
 		Time.timeScale = 5f;
+		Debug.Log ("Spawn" + transform.position);
 	}
 
 	void Update () {
@@ -39,26 +40,32 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void Destroy(){
+		Time.timeScale = 5f;
 		Camera.main.GetComponent<AudioSource>().Play();
 		for(int i = 0; i < Random.Range(5,16); i++){
 			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
 		}
-		Time.timeScale = 5f;
 		Destroy(this.gameObject);
 	}
 
 	public void DisableAnimator(){
 		GetComponent<Animator>().enabled = false;
+		transform.position = new Vector3(0,75,0);
 	}
 
-	void OnTriggerEnter2D(Collider2D other){
-		if(other.gameObject.tag == "Obstacle")
-			Destroy();
+	void OnTriggerStay2D(Collider2D other){
+		Debug.DrawLine(transform.position, other.transform.position);
+		if(other.gameObject.tag == "Obstacle"){
+			Debug.Log ("obstacle: " + transform.position);
+				Destroy();
+		}
 
-		if(other.gameObject.tag == "DangerZone")
+		else if(other.gameObject.tag == "DangerZone"){
 			Time.timeScale = 1f;
+		}
 
-		if(other.gameObject.tag == "Finish"){
+		else if(other.gameObject.tag == "Finish"){
+			Debug.Log ("finish: " + transform.position);
 			int completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 			int currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
 			if(currentLevel == completedLevels){
@@ -68,13 +75,18 @@ public class Spaceship : MonoBehaviour {
 				PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
 				Application.LoadLevel(Application.loadedLevel);
 			}else
-				Application.LoadLevel("LevelSelection");
-		}
+				Invoke("NextLevel", 2f);
 
+		}
+	}
+
+	void NextLevel(){
+		Application.LoadLevel("LevelSelection");
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-		if(other.gameObject.tag == "DangerZone")
+		if(other.gameObject.tag == "DangerZone"){
 			Time.timeScale = 5f;
+		}
 	}
 }
