@@ -3,11 +3,15 @@ using System.Collections;
 
 public class Fragment : MonoBehaviour {
 
-	public float rotationSpeed;
-	public Vector2 movementSpeed;
+	public float rebuildSpeed;
+	float rotationSpeed;
+	Vector2 movementSpeed;
+	bool isRebuilding;
+	Rigidbody2D thisRigidbody;
 
-	void Start () {
-		Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+	void Awake () {
+		isRebuilding = false;
+		thisRigidbody = GetComponent<Rigidbody2D>();
 
 		//SET A MOVEMENT SPEED WITH A MAGNITUDE HIGHER THAN 1
 		do{
@@ -21,7 +25,24 @@ public class Fragment : MonoBehaviour {
 		}while(Mathf.Abs(rotationSpeed) < 0.2);
 
 		//ADD MOVEMENT AND ROTATION SPEED
-		rigidbody.AddTorque(rotationSpeed, ForceMode2D.Impulse);
-		rigidbody.AddForce(movementSpeed, ForceMode2D.Impulse);
+		thisRigidbody.AddTorque(rotationSpeed, ForceMode2D.Impulse);
+		thisRigidbody.AddForce(movementSpeed, ForceMode2D.Impulse);
+	}
+
+	void Update() {
+		if(isRebuilding){
+			Vector3 vectorToTarget = new Vector3(0, -120, 0) - transform.position;
+			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
+			Quaternion finalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * 1.5f);
+
+			thisRigidbody.AddRelativeForce(new Vector2(0, rebuildSpeed), ForceMode2D.Force);
+			if(transform.position.y < -105)
+				Destroy(this.gameObject);
+		}
+	}
+
+	public void Rebuild() {
+		isRebuilding = true;
 	}
 }

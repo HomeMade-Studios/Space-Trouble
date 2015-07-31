@@ -3,29 +3,41 @@ using System.Collections;
 
 public class LevelController : MonoBehaviour {
 
-	public static bool playerIsDead;
+	public GameObject spaceship, spaceShipPrefab;
 
 	void Awake () {
-		playerIsDead = false;
+		InstantiateDangerZone();
+		Spawn();
+	}
+	
+	void Update (){
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			ToLevelSelection();
+		}
+		if(spaceship.gameObject == null){
+			Invoke("Respawn", 5f);
+		}
+	}
+
+	void InstantiateDangerZone(){
 		int levelToLoad = PlayerPrefs.GetInt("levelToLoad", 0);
 		if(levelToLoad != 0)
 			Instantiate(Resources.Load("DangerZone" + levelToLoad.ToString()), new Vector3(0,0,0), Quaternion.identity);
 	}
 
-	void Update (){
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			Application.LoadLevel("LevelSelection");
-		}
-		if(playerIsDead){
-			Invoke("Retry", 25f);
-			if(CheckInput()){
-				Retry();
-			}
+	void Spawn(){
+		spaceship = Instantiate(spaceShipPrefab, new Vector3(0,-105,0), Quaternion.identity) as GameObject;
+	}
+
+	void Respawn(){
+		GameObject[] fragments = GameObject.FindGameObjectsWithTag("Fragment");
+		for (int i = 0; i < fragments.Length; i++) {
+			fragments[i].GetComponent<Fragment>().Rebuild();
 		}
 	}
 
-	void Retry(){
-		Application.LoadLevel(Application.loadedLevel);
+	void ToLevelSelection() {
+		Application.LoadLevel("LevelSelection");
 	}
 
 	bool CheckInput(){
