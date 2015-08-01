@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	void Start () {
-		Spawn();
+
 	}
 	
 	void Update (){
