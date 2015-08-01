@@ -18,14 +18,13 @@ public class Spaceship : MonoBehaviour {
 		switch(currentState){
 
 		case "positioning":
-			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -75, 0), 0.2f * Time.deltaTime);
-			if(transform.position.y > -76)
+			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -72.5f, 0), 1.5f * Time.deltaTime);
+			if(transform.position.y >= -75)
 				currentState = "idle";
 			break;
 
 		case "idle":
 			if(LevelController.CheckInput()){
-				LevelController.StartSlowMotion();
 				Jump();
 				currentState = "jumping";
 			}
@@ -45,18 +44,32 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void Destroy(){
-
+		LevelController.StopSlowMotion();
+		Camera.main.GetComponent<AudioSource>().Play();
+		for(int i = 0; i < Random.Range(5,16); i++){
+			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
+		}
+		Destroy(this.gameObject);
 	}
 
-	public void DisableAnimator(){
+	void OnTriggerEnter2D(Collider2D other){
+		if(other.gameObject.tag == "DangerZone"){
+			LevelController.StartSlowMotion();
+		}
 
-	}
+		if(other.gameObject.tag == "Obstacle"){
+			Destroy();
+		}
 
-	void OnTriggerStay2D(Collider2D other){
+		if(other.gameObject.tag == "Finish"){
+			LevelController.NextLevel();
+		}
 
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-
+		if(other.gameObject.tag == "DangerZone"){
+			LevelController.StopSlowMotion();
+		}
 	}
 }

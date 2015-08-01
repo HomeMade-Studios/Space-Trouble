@@ -4,9 +4,15 @@ using System.Collections;
 public class LevelController : MonoBehaviour {
 
 	public GameObject spaceship, spaceshipPrefab;
+	static int completedLevels, currentLevel;
 
 	void Awake () {
 		InstantiateDangerZone();
+		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
+		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
+		if(currentLevel == completedLevels + 1){
+			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
+		}
 	}
 
 	void Start () {
@@ -22,6 +28,8 @@ public class LevelController : MonoBehaviour {
 				Spawn();
 			}
 		}
+
+		Debug.Log (Time.timeScale + "\t" + Time.fixedDeltaTime);
 	}
 
 	void InstantiateDangerZone(){
@@ -38,14 +46,22 @@ public class LevelController : MonoBehaviour {
 		Application.LoadLevel("LevelSelection");
 	}
 
+	public static void NextLevel(){
+		if(currentLevel < MainMenu.maxLevel - 1){
+			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
+			Application.LoadLevel(Application.loadedLevel);
+		}else
+			Application.LoadLevel("LevelSelection");
+	}
+
 	public static void StartSlowMotion() {
-		Time.timeScale = 0.5f;
-		Time.fixedDeltaTime = 0.5f * 0.02f;
+		Time.timeScale = 0.2f;
+		Time.fixedDeltaTime = 0.2f * 0.02f;
 	}
 	
 	public static void StopSlowMotion() {
 		Time.timeScale = 1f;
-		Time.fixedDeltaTime = 1f * 0.02f;
+		Time.fixedDeltaTime = 0.02f;
 	}
 
 	public static bool CheckInput(){
