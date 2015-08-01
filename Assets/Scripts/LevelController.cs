@@ -38,7 +38,17 @@ public class LevelController : MonoBehaviour {
 		Application.LoadLevel("LevelSelection");
 	}
 
-	bool CheckInput(){
+	public static void StartSlowMotion() {
+		Time.timeScale = 0.5f;
+		Time.fixedDeltaTime = 0.5f * 0.02f;
+	}
+	
+	public static void StopSlowMotion() {
+		Time.timeScale = 1f;
+		Time.fixedDeltaTime = 1f * 0.02f;
+	}
+
+	public static bool CheckInput(){
 		if(Input.GetKeyDown(KeyCode.Space)){
 			return true;
 		}
