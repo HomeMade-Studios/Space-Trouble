@@ -7,7 +7,11 @@ public class Spaceship : MonoBehaviour {
 	public GameObject[] shipFragments;
 	string currentState;
 	Rigidbody2D thisRigidbody;
+	bool justSpawned;
 
+	void Awake() {
+		justSpawned = true;
+	}
 
 	void Start () {
 		thisRigidbody = GetComponent<Rigidbody2D>();
@@ -18,7 +22,10 @@ public class Spaceship : MonoBehaviour {
 		switch(currentState){
 
 		case "positioning":
-			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -72.5f, 0), 1.5f * Time.deltaTime);
+			if(justSpawned)
+				transform.position = new Vector3(0, -150, 0);
+			justSpawned = false;
+			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -70f, 0), 1.5f * Time.deltaTime);
 			if(transform.position.y >= -75)
 				currentState = "idle";
 			break;
@@ -38,8 +45,7 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void Jump(){
-		print ("f");
-//		thisRigidbody.AddRelativeForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+		thisRigidbody.AddRelativeForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
 		thisRigidbody.velocity = new Vector2(0, jumpSpeed);
 	}
 
@@ -53,18 +59,19 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(other.gameObject.tag == "DangerZone"){
-			LevelController.StartSlowMotion();
-		}
+		if(currentState == "jumping"){
+			if(other.gameObject.tag == "DangerZone"){
+				LevelController.StartSlowMotion();
+			}
 
-		if(other.gameObject.tag == "Obstacle"){
-			Destroy();
-		}
+			if(other.gameObject.tag == "Obstacle"){
+				Destroy();
+			}
 
-		if(other.gameObject.tag == "Finish"){
-			LevelController.NextLevel();
+			if(other.gameObject.tag == "Finish"){
+				LevelController.NextLevel();
+			}
 		}
-
 	}
 
 	void OnTriggerExit2D(Collider2D other){
