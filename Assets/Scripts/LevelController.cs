@@ -12,9 +12,7 @@ public class LevelController : MonoBehaviour {
 		InstantiateDangerZone();
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
-		if(currentLevel == completedLevels + 1){
-			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
-		}
+
 	}
 
 	void Start () {
@@ -51,6 +49,9 @@ public class LevelController : MonoBehaviour {
 		if(currentLevel < MainMenu.maxLevel - 1){
 			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
 			Application.LoadLevel(Application.loadedLevel);
+			if(currentLevel == completedLevels){
+				PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
+			}
 		}else
 			Application.LoadLevel("LevelSelection");
 	}
