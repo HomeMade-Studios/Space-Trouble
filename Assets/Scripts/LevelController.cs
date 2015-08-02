@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LevelController : MonoBehaviour {
 
 	public GameObject spaceship, spaceshipPrefab;
 	static int completedLevels, currentLevel;
+	public Text text1;
 
 	void Awake () {
 		InstantiateDangerZone();
+		spaceship = null;
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
 	}
@@ -17,6 +20,7 @@ public class LevelController : MonoBehaviour {
 			ToLevelSelection();
 		}
 		if(spaceship.gameObject == null){
+			text1.text = "b";
 			if(GameObject.FindGameObjectsWithTag("Fragment").Length == 0){
 				Spawn();
 			}
@@ -30,7 +34,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	void Spawn(){
-		spaceship = Instantiate(spaceshipPrefab, new Vector3(0,-105,0), Quaternion.identity) as GameObject;
+		spaceship = Instantiate(spaceshipPrefab, new Vector3(0,0,0), Quaternion.identity) as GameObject;
 	}
 
 	void ToLevelSelection() {

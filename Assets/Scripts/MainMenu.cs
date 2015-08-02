@@ -9,7 +9,10 @@ public class MainMenu : MonoBehaviour {
 	public static int maxLevel = 20;
 
 	void Awake(){
-		//PlayerPrefs.DeleteAll();
+		PlayerPrefs.DeleteAll();
+		PlayerPrefs.SetInt("completedLevels", 15);
+		PlayerPrefs.SetInt("firstTime", 0);
+
 		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.SetInt("firstTime", 0);
