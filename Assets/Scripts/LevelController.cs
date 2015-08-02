@@ -10,7 +10,6 @@ public class LevelController : MonoBehaviour {
 		InstantiateDangerZone();
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
-
 	}
 
 	void Update (){
@@ -22,8 +21,6 @@ public class LevelController : MonoBehaviour {
 				Spawn();
 			}
 		}
-		print (completedLevels);
-		print (currentLevel);
 	}
 
 	void InstantiateDangerZone(){

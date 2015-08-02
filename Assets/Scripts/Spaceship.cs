@@ -7,11 +7,6 @@ public class Spaceship : MonoBehaviour {
 	public GameObject[] shipFragments;
 	string currentState;
 	Rigidbody2D thisRigidbody;
-	bool justSpawned;
-
-	void Awake() {
-		justSpawned = true;
-	}
 
 	void Start () {
 		thisRigidbody = GetComponent<Rigidbody2D>();
@@ -22,9 +17,6 @@ public class Spaceship : MonoBehaviour {
 		switch(currentState){
 
 		case "positioning":
-			if(justSpawned)
-				transform.position = new Vector3(0, -150, 0);
-			justSpawned = false;
 			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -70f, 0), 1.5f * Time.deltaTime);
 			if(transform.position.y >= -75)
 				currentState = "idle";
