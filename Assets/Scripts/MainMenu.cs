@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
 	public GameObject welcomeMessagePanel, creditsPanel;
-	public static int maxLevel = 10;
+	public static int maxLevel = 20;
 
 	void Awake(){
 		//PlayerPrefs.DeleteAll();
@@ -16,6 +16,9 @@ public class MainMenu : MonoBehaviour {
 			OpenWelcomeMessagePanel();
 		}
 		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
+		if(PlayerPrefs.GetInt("completedLevels", 0) == maxLevel){
+			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
+		}
 	}
 
 	void Update(){

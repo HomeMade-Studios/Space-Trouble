@@ -5,29 +5,25 @@ public class LevelController : MonoBehaviour {
 
 	public GameObject spaceship, spaceshipPrefab;
 	static int completedLevels, currentLevel;
-	bool firtsSpawn;
 
 	void Awake () {
-		firtsSpawn = true;
-//		InstantiateDangerZone();
+		InstantiateDangerZone();
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
 
 	}
 
-	void Start () {
-		Invoke("Spawn", 1f);
-	}
-	
 	void Update (){
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			ToLevelSelection();
 		}
-		if(spaceship.gameObject == null && !firtsSpawn){
+		if(spaceship.gameObject == null){
 			if(GameObject.FindGameObjectsWithTag("Fragment").Length == 0){
 				Spawn();
 			}
 		}
+		print (completedLevels);
+		print (currentLevel);
 	}
 
 	void InstantiateDangerZone(){
@@ -38,7 +34,6 @@ public class LevelController : MonoBehaviour {
 
 	void Spawn(){
 		spaceship = Instantiate(spaceshipPrefab, new Vector3(0,-105,0), Quaternion.identity) as GameObject;
-		firtsSpawn = false;
 	}
 
 	void ToLevelSelection() {
@@ -49,11 +44,11 @@ public class LevelController : MonoBehaviour {
 		if(currentLevel < MainMenu.maxLevel - 1){
 			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
 			Application.LoadLevel(Application.loadedLevel);
-			if(currentLevel == completedLevels){
-				PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
-			}
 		}else
 			Application.LoadLevel("LevelSelection");
+		if(currentLevel == completedLevels){
+			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
+		}
 	}
 
 	public static void StartSlowMotion() {
