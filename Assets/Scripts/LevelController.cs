@@ -9,7 +9,7 @@ public class LevelController : MonoBehaviour {
 
 	void Awake () {
 		firtsSpawn = true;
-		InstantiateDangerZone();
+//		InstantiateDangerZone();
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
 
