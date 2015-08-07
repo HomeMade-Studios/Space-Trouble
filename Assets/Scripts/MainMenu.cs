@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
 	public GameObject welcomeMessagePanel, creditsPanel;
-	public static int maxLevel = 25;
+	public static int maxLevel = 30;
 
 	void Awake(){
 		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
