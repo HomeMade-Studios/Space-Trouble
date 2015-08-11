@@ -31,6 +31,13 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
+	public void InvertAudio(){
+		if(AudioListener.volume == 1f)
+			AudioListener.volume = 0f;
+		else
+			AudioListener.volume = 1f;
+	}
+
 	public void OpenCreditsPanel() {
 		creditsPanel.SetActive(true);
 	}
