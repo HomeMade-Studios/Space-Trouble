@@ -22,7 +22,12 @@ public class MainMenu : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit();
+			if(!welcomeMessagePanel.activeSelf && !creditsPanel.activeSelf)
+				Application.Quit();
+			else{
+				welcomeMessagePanel.SetActive(false);
+				creditsPanel.SetActive(false);
+			}
 		}
 	}
 

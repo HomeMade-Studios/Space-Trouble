@@ -51,18 +51,16 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(currentState == "jumping"){
-			if(other.gameObject.tag == "DangerZone"){
-				LevelController.StartSlowMotion();
-			}
-
-			if(other.gameObject.tag == "Obstacle"){
-				Destroy();
-			}
-
-			if(other.gameObject.tag == "Finish"){
-				LevelController.NextLevel();
-			}
+		if(other.gameObject.tag == "DangerZone"){
+			LevelController.StartSlowMotion();
+		}
+		
+		if(other.gameObject.tag == "Obstacle"){
+			Destroy();
+		}
+		
+		if(other.gameObject.tag == "Finish"){
+			LevelController.NextLevel();
 		}
 	}
 

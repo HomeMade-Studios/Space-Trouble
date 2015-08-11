@@ -41,14 +41,15 @@ public class LevelController : MonoBehaviour {
 	}
 
 	public static void NextLevel(){
+		if(currentLevel == completedLevels){
+			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
+		}
 		if(currentLevel < MainMenu.maxLevel - 1){
 			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
 			Application.LoadLevel(Application.loadedLevel);
 		}else
 			Application.LoadLevel("LevelSelection");
-		if(currentLevel == completedLevels){
-			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
-		}
+
 	}
 
 	public static void StartSlowMotion() {
