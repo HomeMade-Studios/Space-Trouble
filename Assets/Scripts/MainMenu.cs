@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
 	public GameObject welcomeMessagePanel, creditsPanel;
+	public Toggle audioToggle;
 	public static int maxLevel = 30;
 
 	void Awake(){
@@ -14,6 +15,8 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("firstTime", 0);
 			OpenWelcomeMessagePanel();
 		}
+		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
+		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
 		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
 		if(PlayerPrefs.GetInt("completedLevels", 0) == maxLevel){
 			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
@@ -32,10 +35,8 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void InvertAudio(){
-		if(AudioListener.volume == 1f)
-			AudioListener.volume = 0f;
-		else
-			AudioListener.volume = 1f;
+		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
+		PlayerPrefs.SetInt("AudioVolume", (int)AudioListener.volume);
 	}
 
 	public void OpenCreditsPanel() {
