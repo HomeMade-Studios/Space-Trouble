@@ -38,7 +38,7 @@ public class Fragment : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, 10f * Time.deltaTime);
 
 			thisRigidbody.AddRelativeForce(new Vector2(0, rebuildSpeed), ForceMode2D.Force);
-			if(transform.position.y < -105)
+			if(transform.position.y < -110)
 				Destroy(this.gameObject);
 		}
 	}

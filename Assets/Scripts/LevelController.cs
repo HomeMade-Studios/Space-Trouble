@@ -32,7 +32,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	void Spawn(){
-		Instantiate(Resources.Load<GameObject>("spaceship"), new Vector3(0,-105,0), Quaternion.identity);
+		Instantiate(Resources.Load<GameObject>("spaceship"), new Vector3(0,-110,0), Quaternion.identity);
 		spaceship = GameObject.FindGameObjectWithTag("Player");
 	}
 

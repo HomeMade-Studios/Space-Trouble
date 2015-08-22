@@ -17,8 +17,8 @@ public class Spaceship : MonoBehaviour {
 		switch(currentState){
 
 		case "positioning":
-			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -70f, 0), 1.5f * Time.deltaTime);
-			if(transform.position.y >= -75)
+			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -65f, 0), 2f * Time.deltaTime);
+			if(transform.position.y >= -70)
 				currentState = "idle";
 			break;
 
