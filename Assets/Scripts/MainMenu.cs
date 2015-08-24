@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " km";
+		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " AU";
 		if(PlayerPrefs.GetInt("completedLevels", 0) == maxLevel){
 			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
 		}
