@@ -8,18 +8,23 @@ namespace Soomla.Store.SpaceTrouble {
 
 	public class SoomlaStoreInitializer : MonoBehaviour {
 
+		VirtualGood fiveShield;
+
 		void Start(){
+			StoreEvents.OnSoomlaStoreInitialized += onSoomlaStoreInitialized;
 			SoomlaStore.Initialize(new SpaceTroubleAssets());
 		}
 
-		void Update () {
-			
+		public void onSoomlaStoreInitialized()
+		{
+			fiveShield = (VirtualGood) StoreInfo.GetItemByItemId("shield_pack_5");
+
 		}
 
 		public void PurchaseTest(){
 			try{
 				Debug.Log("Attempt to purchase");
-				StoreInventory.BuyItem("shield_pack_5", "0.70");
+				StoreInventory.BuyItem(fiveShield.ItemId );
 			}
 			catch(Exception e){
 				Debug.Log("SOOMLA/UNITY" + e.Message);
