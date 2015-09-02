@@ -7,7 +7,7 @@ public class DontDestroyOnLoad : MonoBehaviour {
 
 		DontDestroyOnLoad(this);
 
-		if (FindObjectsOfType(GetType()).Length > 1)
+		if (GameObject.FindGameObjectsWithTag(this.gameObject.tag).Length > 1)
 		{
 			Destroy(gameObject);
 		}

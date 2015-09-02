@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.SetInt("firstTime", 0);
 			OpenWelcomeMessagePanel();
+			FuelController.RefillFuel(FuelController.maxFuel);
 		}
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
