@@ -32,7 +32,7 @@ namespace Soomla.Store.SpaceTrouble {
 
 		public const string SHIELD_CURRENCY_ITEM_ID = "shield";
 
-		public const string FIVESHIELD_PACK_PRODUCT_ID = "android.test.purchased";
+		public const string FIVESHIELD_PACK_PRODUCT_ID = "com.homemadestudios.spacetrouble.shield.pack.5";
 		
 		public const string NO_ADS_LIFETIME_PRODUCT_ID = "no_ads";	
 		

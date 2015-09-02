@@ -20,7 +20,6 @@ namespace Soomla.Store.SpaceTrouble {
 			try{
 				Debug.Log("Attempt to purchase");
 				StoreInventory.BuyItem("shield_pack_5", "0.70");
-				print ("c");
 			}
 			catch(Exception e){
 				Debug.Log("SOOMLA/UNITY" + e.Message);
