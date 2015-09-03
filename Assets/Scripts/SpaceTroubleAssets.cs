@@ -30,9 +30,9 @@ namespace Soomla.Store.SpaceTrouble {
 		
 		/** Static Final Members **/
 
-		public const string SHIELD_CURRENCY_ITEM_ID = "shield";
+		public const string SHIELD_CURRENCY_ITEM_ID = "shield_currency";
 
-		public const string FIVESHIELD_PACK_PRODUCT_ID = "com.homemadestudios.spacetrouble.shield.pack.5";
+		public const string FIVESHIELD_PACK_PRODUCT_ID = "shield_5";
 		
 		public const string NO_ADS_LIFETIME_PRODUCT_ID = "no_ads";	
 		
@@ -49,11 +49,13 @@ namespace Soomla.Store.SpaceTrouble {
 		public static VirtualCurrencyPack FIVESHIELD_PACK = new VirtualCurrencyPack(
 			"5 Shield",										// name
 			"Add 5 shield",                       			// description
-			"shield_5",								// item id
+			"shield_5",										// item id
 			5,												// number of currencies in the pack
 			SHIELD_CURRENCY_ITEM_ID,                        // the currency associated with this pack
 			new PurchaseWithMarket(FIVESHIELD_PACK_PRODUCT_ID, 0.99)
 			);
+
+
 		
 		/** Virtual Goods **/
 		

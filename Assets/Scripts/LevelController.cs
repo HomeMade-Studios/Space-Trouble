@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour {
 	GameObject spaceship;
 
 	void Awake () {
-		//InstantiateDangerZone();
+		InstantiateDangerZone();
 		spaceship = null;
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		currentLevel = PlayerPrefs.GetInt("levelToLoad", 0);
