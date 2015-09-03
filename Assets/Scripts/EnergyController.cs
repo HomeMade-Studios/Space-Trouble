@@ -31,17 +31,17 @@ public class EnergyController : MonoBehaviour {
 		CheckRechargeTime();
 	}
 
-	public static void RechargeEnergy(int refillValue){
-		currentEnergy += refillValue;
+	public static void RechargeEnergy(int rechargeValue){    //Recharge energy by value
+		currentEnergy += rechargeValue;
 		if(currentEnergy > maxEnergy)
 			currentEnergy = maxEnergy;
 	}
 
-	void CheckEnergyUpgrade(){
+	void CheckEnergyUpgrade(){								//Check if player bought some Upgrade and apply it
 
 	}
 
-	void CheckRechargeTime(){
+	void CheckRechargeTime(){								//Check if recharging time is passed, if true recharge by 1
 		currentTime = (int)(DateTime.UtcNow - referDate).TotalSeconds;
 		if(currentTime - lastEnergyRecharge >= autoRechargeDeltaTime){
 			RechargeEnergy(1);
@@ -55,8 +55,8 @@ public class EnergyController : MonoBehaviour {
 		int minutes = seconds / 60;
 		seconds -= minutes * 60;
 
-		string timeString = minutes.ToString() + ":" + seconds.ToString();
+		string timeString = minutes.ToString("D2") + ":" + seconds.ToString("D2");
 
 		return timeString;
-	}
+	}					//Return a string representing time to next recharge (mm:ss)
 }
