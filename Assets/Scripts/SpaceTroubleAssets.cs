@@ -49,7 +49,7 @@ namespace Soomla.Store.SpaceTrouble {
 		public static VirtualCurrencyPack FIVESHIELD_PACK = new VirtualCurrencyPack(
 			"5 Shield",										// name
 			"Add 5 shield",                       			// description
-			"shield_pack_5",								// item id
+			"shield_5",								// item id
 			5,												// number of currencies in the pack
 			SHIELD_CURRENCY_ITEM_ID,                        // the currency associated with this pack
 			new PurchaseWithMarket(FIVESHIELD_PACK_PRODUCT_ID, 0.99)
