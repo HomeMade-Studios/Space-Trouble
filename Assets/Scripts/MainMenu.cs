@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.SetInt("firstTime", 0);
 			OpenWelcomeMessagePanel();
-			FuelController.RefillFuel(FuelController.maxFuel);
+			EnergyController.RechargeEnergy(EnergyController.maxEnergy);
 		}
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
