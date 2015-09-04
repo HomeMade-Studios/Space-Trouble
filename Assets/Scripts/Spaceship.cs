@@ -24,8 +24,11 @@ public class Spaceship : MonoBehaviour {
 
 		case "idle":
 			if(LevelController.CheckInput()){
-				Jump();
-				currentState = "jumping";
+				if(EnergyController.currentEnergy > 0){
+					EnergyController.RechargeEnergy(-1);
+					Jump();
+					currentState = "jumping";
+				}
 			}
 			break;
 

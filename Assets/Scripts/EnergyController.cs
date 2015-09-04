@@ -14,7 +14,8 @@ public class EnergyController : MonoBehaviour {
 
 	void Awake() {
 		maxEnergy = 30;
-		autoRechargeDeltaTime = 5;
+		currentEnergy = PlayerPrefs.GetInt("Energy");
+		autoRechargeDeltaTime = 10;
 
 		referDate = new DateTime(2000, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 		lastEnergyRecharge = PlayerPrefs.GetInt("lastEnergyRecharge", 0);
@@ -30,9 +31,7 @@ public class EnergyController : MonoBehaviour {
 	}
 
 	void Update () {
-		if(currentEnergy < maxEnergy){
-			CheckRechargeTime();
-		}
+		CheckRechargeTime();
 		WriteEnergyText();
 	}
 
@@ -40,6 +39,7 @@ public class EnergyController : MonoBehaviour {
 		currentEnergy += rechargeValue;
 		if(currentEnergy > maxEnergy)
 			currentEnergy = maxEnergy;
+		PlayerPrefs.SetInt("Energy", currentEnergy);
 	}
 
 	void CheckEnergyUpgrade(){								//Check if player bought some Upgrade and apply it
@@ -48,10 +48,16 @@ public class EnergyController : MonoBehaviour {
 
 	void CheckRechargeTime(){								//Check if recharging time is passed, if true recharge by 1
 		currentTime = (int)(DateTime.UtcNow - referDate).TotalSeconds;
-		if(currentTime - lastEnergyRecharge >= autoRechargeDeltaTime){
-			RechargeEnergy(1);
+		if(currentEnergy < maxEnergy){
+			if(currentTime - lastEnergyRecharge >= autoRechargeDeltaTime){
+				RechargeEnergy(1);
+				lastEnergyRecharge += autoRechargeDeltaTime;
+		
+				PlayerPrefs.SetInt("lastEnergyRecharge", lastEnergyRecharge);
+			}
+		}
+		else{
 			lastEnergyRecharge = currentTime;
-			PlayerPrefs.SetInt("lastEnergyRecharge", lastEnergyRecharge);
 		}
 	}
 
