@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
 public class EnergyController : MonoBehaviour {
 	
 	public static int currentEnergy, maxEnergy;
+	public Text energyText;
 	DateTime referDate;
 	int lastEnergyRecharge;							//Second from referDate to last automated recharge
 	int autoRechargeDeltaTime;						//Time in second before fuel is increased by 1
@@ -12,7 +14,7 @@ public class EnergyController : MonoBehaviour {
 
 	void Awake() {
 		maxEnergy = 30;
-		autoRechargeDeltaTime = 300;
+		autoRechargeDeltaTime = 5;
 
 		referDate = new DateTime(2000, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 		lastEnergyRecharge = PlayerPrefs.GetInt("lastEnergyRecharge", 0);
@@ -28,7 +30,10 @@ public class EnergyController : MonoBehaviour {
 	}
 
 	void Update () {
-		CheckRechargeTime();
+		if(currentEnergy < maxEnergy){
+			CheckRechargeTime();
+		}
+		WriteEnergyText();
 	}
 
 	public static void RechargeEnergy(int rechargeValue){    //Recharge energy by value
@@ -50,7 +55,11 @@ public class EnergyController : MonoBehaviour {
 		}
 	}
 
-	public string timeToNextRecharge(){
+	void WriteEnergyText(){
+		energyText.text = currentEnergy.ToString() + "/" + maxEnergy.ToString();
+	}
+
+	public string timeToNextRecharge(){				//Return a string representing time to next recharge (mm:ss)
 		int seconds = currentTime - lastEnergyRecharge;
 		int minutes = seconds / 60;
 		seconds -= minutes * 60;
@@ -58,5 +67,5 @@ public class EnergyController : MonoBehaviour {
 		string timeString = minutes.ToString("D2") + ":" + seconds.ToString("D2");
 
 		return timeString;
-	}					//Return a string representing time to next recharge (mm:ss)
+	}					
 }
