@@ -5,6 +5,7 @@ public class Spaceship : MonoBehaviour {
 
 	public float jumpSpeed;
 	public GameObject[] shipFragments;
+	public GameObject shield;
 	string currentState;
 	Rigidbody2D thisRigidbody;
 
@@ -46,11 +47,20 @@ public class Spaceship : MonoBehaviour {
 
 	void Destroy(){
 		LevelController.StopSlowMotion();
+		shield.SetActive(false);
 		Camera.main.GetComponent<AudioSource>().Play();
 		for(int i = 0; i < Random.Range(5,16); i++){
 			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
 		}
 		Destroy(this.gameObject);
+	}
+
+	public void ActivateShield(){
+		shield.SetActive(true);
+	}
+
+	public void DeactivateShield(){
+		shield.SetActive(false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -59,11 +69,14 @@ public class Spaceship : MonoBehaviour {
 		}
 		
 		if(other.gameObject.tag == "Obstacle"){
-			Destroy();
+			if(!shield.activeSelf){
+				Destroy();
+			}
 		}
 		
 		if(other.gameObject.tag == "Finish"){
 			LevelController.NextLevel();
+			shield.SetActive(false);
 		}
 	}
 

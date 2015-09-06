@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Soomla.Store;
 
 public class MainMenu : MonoBehaviour {
 
@@ -9,12 +10,9 @@ public class MainMenu : MonoBehaviour {
 	public Toggle audioToggle;
 	public static int maxLevel = 30;
 
-	void Awake(){
+	void Start(){
 		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
-			PlayerPrefs.DeleteAll();
-			PlayerPrefs.SetInt("firstTime", 0);
-			OpenWelcomeMessagePanel();
-			EnergyController.RechargeEnergy(EnergyController.maxEnergy);
+			FirstTime();
 		}
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
@@ -33,6 +31,15 @@ public class MainMenu : MonoBehaviour {
 				creditsPanel.SetActive(false);
 			}
 		}
+	}
+
+	void FirstTime(){
+		PlayerPrefs.DeleteAll();
+		PlayerPrefs.SetInt("firstTime", 0);
+		EnergyController.RechargeEnergy(EnergyController.maxEnergy);
+		StoreInventory.GiveItem("shield_currency", 3);
+		OpenWelcomeMessagePanel();
+
 	}
 
 	public void InvertAudio(){
