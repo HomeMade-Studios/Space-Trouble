@@ -6,25 +6,63 @@ using Soomla.Store;
 public class ShieldController : MonoBehaviour {
 
 	public Text shieldText;
+	static Button shieldButton;
+	static GameObject spaceship;
 
-	void Start () {
-		UpdateShieldText();
+	void Awake(){
+		shieldButton = gameObject.GetComponent<Button>();
 	}
 
-	void UpdateShieldText(){
+	void Start () {
+		RefreshShieldQuantity();
+	}
+
+	void RefreshShieldQuantity(){
 		SoomlaStore.RefreshInventory();
-		shieldText.text = StoreInventory.GetItemBalance("shield_currency").ToString();
+		int shieldQuantity = StoreInventory.GetItemBalance("shield_currency");
+		shieldText.text = shieldQuantity.ToString();
+		if(shieldQuantity <= 0){
+			LockShieldButton();
+		}
+		else{
+			UnlockShieldButton();
+		}
 	}
 
 	public void UseShield(){
-		print ("c");
-		GameObject spaceShip = GameObject.FindGameObjectWithTag("Player");
-		if(spaceShip != null){
-			//spaceShip.GetComponent<Spaceship>().ActivateShield();
+		print ("try");
+		spaceship = GameObject.FindGameObjectWithTag("Player");
+		if(spaceship != null){
+			print ("ok");
+			ActivateShield();
 			if(StoreInventory.GetItemBalance("shield_currency") > 0){
 				StoreInventory.TakeItem("shield_currency", 1);
-				UpdateShieldText();
+				RefreshShieldQuantity();
 			}
 		}
+	}
+
+	public static void ActivateShield() {
+		spaceship = GameObject.FindGameObjectWithTag("Player");
+		if(spaceship != null){
+			spaceship.transform.FindChild("Shield").gameObject.SetActive(true);
+			LockShieldButton();
+		}
+	}
+
+	public static void DisableShield() {
+		spaceship = GameObject.FindGameObjectWithTag("Player");
+		if(spaceship != null){
+			spaceship.transform.FindChild("Shield").gameObject.SetActive(true);
+			UnlockShieldButton();
+		}
+	}
+
+	public static void LockShieldButton() {
+		shieldButton.interactable = false;
+	}
+
+	public static void UnlockShieldButton() {
+		shieldButton.interactable = true;
 	}
 }
