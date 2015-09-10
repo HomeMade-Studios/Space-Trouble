@@ -47,7 +47,6 @@ public class Spaceship : MonoBehaviour {
 
 	void Destroy(){
 		LevelController.StopSlowMotion();
-		ShieldController.DisableShield();
 		Camera.main.GetComponent<AudioSource>().Play();
 		for(int i = 0; i < Random.Range(5,16); i++){
 			Instantiate(shipFragments[Random.Range(0,2)], transform.position, Quaternion.identity);
@@ -67,7 +66,6 @@ public class Spaceship : MonoBehaviour {
 		}
 		
 		if(other.gameObject.tag == "Finish"){
-			ShieldController.DisableShield();
 			LevelController.NextLevel();
 		}
 	}

@@ -9,11 +9,8 @@ public class ShieldController : MonoBehaviour {
 	static Button shieldButton;
 	static GameObject spaceship;
 
-	void Awake(){
-		shieldButton = gameObject.GetComponent<Button>();
-	}
-
 	void Start () {
+		shieldButton = GameObject.Find ("ShieldButton").GetComponent<Button>();
 		RefreshShieldQuantity();
 	}
 
@@ -24,16 +21,11 @@ public class ShieldController : MonoBehaviour {
 		if(shieldQuantity <= 0){
 			LockShieldButton();
 		}
-		else{
-			UnlockShieldButton();
-		}
 	}
 
 	public void UseShield(){
-		print ("try");
 		spaceship = GameObject.FindGameObjectWithTag("Player");
 		if(spaceship != null){
-			print ("ok");
 			ActivateShield();
 			if(StoreInventory.GetItemBalance("shield_currency") > 0){
 				StoreInventory.TakeItem("shield_currency", 1);

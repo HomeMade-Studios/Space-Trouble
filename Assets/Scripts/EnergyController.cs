@@ -15,7 +15,7 @@ public class EnergyController : MonoBehaviour {
 	void Awake() {
 		maxEnergy = 30;
 		currentEnergy = PlayerPrefs.GetInt("Energy");
-		autoRechargeDeltaTime = 10;
+		autoRechargeDeltaTime = 300;
 
 		referDate = new DateTime(2000, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 		lastEnergyRecharge = PlayerPrefs.GetInt("lastEnergyRecharge", 0);
