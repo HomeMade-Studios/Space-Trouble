@@ -15,7 +15,7 @@ public class ShieldController : MonoBehaviour {
 	}
 
 	void RefreshShieldQuantity(){
-		SoomlaStore.RefreshInventory();
+		// SoomlaStore.RefreshInventory();
 		int shieldQuantity = StoreInventory.GetItemBalance("shield_currency");
 		shieldText.text = shieldQuantity.ToString();
 		if(shieldQuantity <= 0){
@@ -26,10 +26,10 @@ public class ShieldController : MonoBehaviour {
 	public void UseShield(){
 		spaceship = GameObject.FindGameObjectWithTag("Player");
 		if(spaceship != null){
-			ActivateShield();
 			if(StoreInventory.GetItemBalance("shield_currency") > 0){
 				StoreInventory.TakeItem("shield_currency", 1);
 				RefreshShieldQuantity();
+				ActivateShield();
 			}
 		}
 	}

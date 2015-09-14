@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class LevelController : MonoBehaviour {
-	
+
+	static EventSystem eventsystem = EventSystem.current;
 	static int completedLevels, currentLevel;
 	GameObject spaceship;
 
@@ -68,7 +70,8 @@ public class LevelController : MonoBehaviour {
 		}
 		if(Input.touchCount > 0){
 			if(Input.GetTouch(0).phase == TouchPhase.Began){
-				return true;
+				if (!eventsystem.IsPointerOverGameObject())
+					return true;
 			}
 		}
 		return false;

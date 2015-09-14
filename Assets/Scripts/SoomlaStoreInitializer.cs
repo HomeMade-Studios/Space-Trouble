@@ -11,15 +11,5 @@ namespace Soomla.Store.SpaceTrouble {
 		void Start(){
 			SoomlaStore.Initialize(new SpaceTroubleAssets());
 		}
-
-		public void PurchaseTest(){
-			try{
-				Debug.Log("Attempt to purchase");
-				StoreInventory.BuyItem("shield_5");
-			}
-			catch(Exception e){
-				Debug.Log("SOOMLA/UNITY" + e.Message);
-			}
-		}
 	}
 }

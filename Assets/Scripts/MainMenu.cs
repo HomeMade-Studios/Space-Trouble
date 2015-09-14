@@ -6,9 +6,9 @@ using Soomla.Store;
 public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
-	public GameObject welcomeMessagePanel, creditsPanel;
+	public GameObject helpPanel, creditsPanel, storePanel;
 	public Toggle audioToggle;
-	public static int maxLevel = 30;
+	public static int maxLevel = 31;
 
 	void Start(){
 		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " AU";
+		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " Zone";
 		if(PlayerPrefs.GetInt("completedLevels", 0) == maxLevel){
 			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
 		}
@@ -24,22 +24,22 @@ public class MainMenu : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			if(!welcomeMessagePanel.activeSelf && !creditsPanel.activeSelf)
+			if(!helpPanel.activeSelf && !creditsPanel.activeSelf && !storePanel.activeSelf)
 				Application.Quit();
 			else{
-				welcomeMessagePanel.SetActive(false);
-				creditsPanel.SetActive(false);
+				CloseHelpPanel();
+				CloseCreditsPanel();
+				CloseStorePanel();
 			}
 		}
 	}
 
 	void FirstTime(){
 		PlayerPrefs.DeleteAll();
-		PlayerPrefs.SetInt("firstTime", 0);
 		EnergyController.RechargeEnergy(EnergyController.maxEnergy);
 		StoreInventory.GiveItem("shield_currency", 3);
-		OpenWelcomeMessagePanel();
-
+		OpenHelpPanel();
+		PlayerPrefs.SetInt("firstTime", 0);
 	}
 
 	public void InvertAudio(){
@@ -55,12 +55,20 @@ public class MainMenu : MonoBehaviour {
 		creditsPanel.SetActive(false);
 	}
 
-	public void OpenWelcomeMessagePanel(){
-		welcomeMessagePanel.SetActive(true);
+	public void OpenHelpPanel(){
+		helpPanel.SetActive(true);
 	}
 
-	public void CloseWelcomeMessagePanel(){
-		welcomeMessagePanel.SetActive(false);
+	public void CloseHelpPanel(){
+		helpPanel.SetActive(false);
+	}
+
+	public void OpenStorePanel(){
+		storePanel.SetActive(true);
+	}
+	
+	public void CloseStorePanel(){
+		storePanel.SetActive(false);
 	}
 
 	public void OpenGamePlayStore(){

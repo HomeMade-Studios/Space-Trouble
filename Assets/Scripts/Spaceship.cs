@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Spaceship : MonoBehaviour {
-
+	
 	public float jumpSpeed;
 	public GameObject[] shipFragments;
 	public GameObject shield;

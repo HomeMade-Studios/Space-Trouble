@@ -6,7 +6,7 @@ using System;
 public class EnergyController : MonoBehaviour {
 	
 	public static int currentEnergy, maxEnergy;
-	public Text energyText;
+	public Text energyText, lastTimeText;
 	DateTime referDate;
 	int lastEnergyRecharge;							//Second from referDate to last automated recharge
 	int autoRechargeDeltaTime;						//Time in second before fuel is increased by 1
@@ -33,6 +33,12 @@ public class EnergyController : MonoBehaviour {
 	void Update () {
 		CheckRechargeTime();
 		WriteEnergyText();
+		if(currentEnergy < maxEnergy){
+			lastTimeText.text = timeToNextRecharge();
+		}
+		else
+			lastTimeText.text = "";
+
 	}
 
 	public static void RechargeEnergy(int rechargeValue){    //Recharge energy by value
@@ -65,12 +71,12 @@ public class EnergyController : MonoBehaviour {
 		energyText.text = currentEnergy.ToString() + "/" + maxEnergy.ToString();
 	}
 
-	public string timeToNextRecharge(){				//Return a string representing time to next recharge (mm:ss)
-		int seconds = currentTime - lastEnergyRecharge;
+	string timeToNextRecharge(){				//Return a string representing time to next recharge (mm:ss)
+		int seconds = autoRechargeDeltaTime - (currentTime - lastEnergyRecharge);
 		int minutes = seconds / 60;
 		seconds -= minutes * 60;
 
-		string timeString = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+		string timeString = minutes.ToString("D1") + ":" + seconds.ToString("D2");
 
 		return timeString;
 	}					

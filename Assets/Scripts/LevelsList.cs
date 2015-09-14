@@ -43,7 +43,7 @@ public class LevelsList : MonoBehaviour {
 			else{
 				levelButtons[i].interactable = false;
 			}
-			levelButtons[i].transform.GetComponentInChildren<Text>().text = (i).ToString() + " AU";
+			levelButtons[i].transform.GetComponentInChildren<Text>().text = "Zona " + (i).ToString();
 		}
 		spaceshipBar.maxValue = MainMenu.maxLevel;
 		spaceshipBar.value = completedLevels;

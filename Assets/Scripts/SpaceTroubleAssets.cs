@@ -17,7 +17,7 @@ namespace Soomla.Store.SpaceTrouble {
 		}
 
 		public VirtualGood[] GetGoods() {
-			return new VirtualGood[] {NO_ADS_LTVG};
+			return new VirtualGood[] {ENDLESS_ENERGY};
 		}
 
 		public VirtualCurrencyPack[] GetCurrencyPacks() {
@@ -40,7 +40,7 @@ namespace Soomla.Store.SpaceTrouble {
 
 		public const string FIFTEENSHIELD_PACK_PRODUCT_ID = "shield_15";
 
-		public const string NO_ADS_LIFETIME_PRODUCT_ID = "no_ads";	
+		public const string ENDLESS_ENERGY_PRODUCT_ID = "no_ads";	
 		
 		/** Virtual Currencies **/
 
@@ -96,11 +96,12 @@ namespace Soomla.Store.SpaceTrouble {
 
 		/** LifeTimeVGs **/
 		// Note: create non-consumable items using LifeTimeVG with PuchaseType of PurchaseWithMarket
-		public static VirtualGood NO_ADS_LTVG = new LifetimeVG(
-			"No Ads", 														// name
-			"No More Ads!",				 									// description
-			"no_ads",														// item id
-			new PurchaseWithMarket(NO_ADS_LIFETIME_PRODUCT_ID, 4.99));	// the way this virtual good is purchased
+
+		public static VirtualGood ENDLESS_ENERGY = new LifetimeVG(
+			"Cannae Drive", 														// name
+			"Endless energy",				 									// description
+			"endless_energy",														// item id
+			new PurchaseWithMarket(ENDLESS_ENERGY_PRODUCT_ID, 4.99));		// the way this virtual good is purchased
 	}
 	
 }
