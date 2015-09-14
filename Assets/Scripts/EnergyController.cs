@@ -7,14 +7,14 @@ public class EnergyController : MonoBehaviour {
 	
 	public static int currentEnergy, maxEnergy;
 	public Text energyText, lastTimeText;
-	DateTime referDate;
-	int lastEnergyRecharge;							//Second from referDate to last automated recharge
-	int autoRechargeDeltaTime;						//Time in second before fuel is increased by 1
-	int currentTime;								//Second since referDate (1/1/2000)
+	static DateTime referDate;
+	static int lastEnergyRecharge;							//Second from referDate to last automated recharge
+	static int autoRechargeDeltaTime;						//Time in second before fuel is increased by 1
+	static int currentTime;								//Second since referDate (1/1/2000)
 
 	void Awake() {
 		maxEnergy = 30;
-		currentEnergy = PlayerPrefs.GetInt("Energy");
+		currentEnergy = PlayerPrefs.GetInt("energy");
 		autoRechargeDeltaTime = 300;
 
 		referDate = new DateTime(2000, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
@@ -45,7 +45,8 @@ public class EnergyController : MonoBehaviour {
 		currentEnergy += rechargeValue;
 		if(currentEnergy > maxEnergy)
 			currentEnergy = maxEnergy;
-		PlayerPrefs.SetInt("Energy", currentEnergy);
+		PlayerPrefs.SetInt("energy", currentEnergy);
+		PlayerPrefs.SetInt("lastEnergyRecharge", lastEnergyRecharge);
 	}
 
 	void CheckEnergyUpgrade(){								//Check if player bought some Upgrade and apply it
@@ -76,7 +77,7 @@ public class EnergyController : MonoBehaviour {
 		int minutes = seconds / 60;
 		seconds -= minutes * 60;
 
-		string timeString = minutes.ToString("D1") + ":" + seconds.ToString("D2");
+		string timeString = minutes.ToString() + ":" + seconds.ToString("D2");
 
 		return timeString;
 	}					
