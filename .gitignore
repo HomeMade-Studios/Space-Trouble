@@ -20,3 +20,12 @@
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 *.apk
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
+*.dll
+Assets/UnityVS/Editor.meta
+*.meta
+ProjectSettings/ProjectVersion.txt
+*.txt
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/ProjectSettings.asset
