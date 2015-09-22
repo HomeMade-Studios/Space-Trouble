@@ -4,7 +4,7 @@ using System.Xml;
 
 public class Lang : MonoBehaviour{
 
-    public string language= "Italian";
+    public string language;
     public Hashtable Strings;
 
 

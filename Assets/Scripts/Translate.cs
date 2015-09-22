@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-
 public class Translate : MonoBehaviour {
 
     public string stringName;
