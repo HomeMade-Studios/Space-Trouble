@@ -3,11 +3,11 @@
 	<English>
 		<string name="playStoreLink">Go to Play Store page!</string>
 		<string name="play">PLAY</string>
-		<string name="zone">ZONE</string>
+		<string name="areas">AREAS</string>
 		<string name="credits">CREDITS</string>
 		<string name="mainTheme">Alexandr Zhelanov (Main theme)</string>
 		<string name="spaceStation">SPACE STATION</string>
-		<string name="cannaeDriveDesc">Mount the motor prototype NASA that can generate energy without consumption.It will allow you to have an unlimited supply of energy for your spaceship. No more waiting!</string>
+		<string name="cannaeDriveDesc">Mount the NASA's motor prototype that can generate energy without consumption.It will allow you to have an unlimited supply of energy for your spaceship. No more waiting!</string>
 		<string name="istantRecharge">ISTANT ENERGY RECHARGE</string>
 		<string name="istantRechargeDesc">Completely regenerates the energy of your ship to the max.</string>
 		<string name="oneShield">1 SHIELD</string>
@@ -28,12 +28,13 @@ A special thanks to:</string>
 		<string name="help">Welcome to Space Trouble, offered by Homemade guys!
 
 Rules:
-tap the screen at the right time to activate the thrusters of the spaceship and overcome obstacles without touching them to advance to the next sequence, timing is everything in Space Trouble!
+tap the screen at the right time to activate the thrusters of the spaceship and overcome obstacles without touching them to advance to the next area, timing is everything in Space Trouble!
 Don't worry if your ship crashed, because it's able to rebuild and return as new!
-Each departure will consume a little power, but fear not, it will be regenerated in a few minutes.
+Each departure will consume a little power, but it will be regenerated in a few minutes.
 In addition, in cases of extreme difficulty, you can activate the shield and become invulnerable, exceeding the area without problems. Remember though that you can activate shields only a limited number of times.
 
 To purchase shields, energy and power ups for your trip you can go to the space station at any time.
+
 To leave a review or to contact the developers about bugs and / or advice you can access the page of the game on the Play Store by pressing the button here below.
 
 To close the message, click on the X at the top right.
@@ -43,7 +44,7 @@ Have fun!</string>
 	<Italian>
 		<string name="playStoreLink">Vai alla pagina del Play Store!</string>
 		<string name="play">GIOCA</string>
-		<string name="zone">ZONE</string>
+		<string name="areas">AREE</string>
 		<string name="store">STAZIONE SPAZIALE</string>
 		<string name="credits">CREDITI</string>
 		<string name="mainTheme">Alexandr Zhelanov (Colonna sonora)</string>
@@ -71,10 +72,11 @@ Un grazie speciale a:</string>
 Regole:
 tocca lo schermo al momento giusto per attivare i propulsori dell'astronave e superare gli ostacoli senza toccarli per passare alla zona sucessiva, il tempismo è tutto in Space Trouble!
 Non ti preoccupare se la tua astronave si schianterà, perchè è in grado di ricostruirsi e tornare come nuova!
-Ogni partenza consumerà un po di energia, ma non temere, verrà rigenerata in pochi minuti.
+Ogni partenza consumerà un po di energia, che verrà tuttavia rigenerata in pochi minuti.
 Inoltre, in casi di estrema difficoltà, puoi attivare gli scudi e diventare invulnerabile, superando la zona senza problemi. Ricorda però che potrai attivarlo solo un numero limitato di volte.
 
 Per acquistare scudi, energia e potenziamenti per il tuo viaggio puoi recarti alla stazione spaziale in qualunque momento.
+
 Per lasciare una recensione o per contattare gli sviluppatori in caso di bug e/o consigli puoi accedere alla pagina del gioco sul Play Store premendo il bottone quì sotto.
 
 Per chiudere il messaggio clicca sulla X in alto a destra.

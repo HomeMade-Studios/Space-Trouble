@@ -10,7 +10,7 @@ public class LevelsList : MonoBehaviour {
 	int completedLevels, maxLevel;
 
 	void Awake () {
-		maxLevel = MainMenu.maxLevel;
+		maxLevel = GameController.maxLevel;
 		completedLevels = PlayerPrefs.GetInt("completedLevels", 0);
 		CreateLevelsButtons();
 		SetLevelsButtons();
@@ -43,9 +43,9 @@ public class LevelsList : MonoBehaviour {
 			else{
 				levelButtons[i].interactable = false;
 			}
-			levelButtons[i].transform.GetComponentInChildren<Text>().text = "Zona " + (i).ToString();
+			levelButtons[i].transform.GetComponentInChildren<Text>().text = "Area " + (i).ToString();
 		}
-		spaceshipBar.maxValue = MainMenu.maxLevel;
+		spaceshipBar.maxValue = GameController.maxLevel;
 		spaceshipBar.value = completedLevels;
 	}
 

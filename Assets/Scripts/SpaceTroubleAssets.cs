@@ -17,7 +17,7 @@ namespace Soomla.Store.SpaceTrouble {
 		}
 
 		public VirtualGood[] GetGoods() {
-			return new VirtualGood[] {ENDLESS_ENERGY};
+			return new VirtualGood[] {ENDLESS_ENERGY, REFILL_ENERGY};
 		}
 
 		public VirtualCurrencyPack[] GetCurrencyPacks() {
@@ -39,6 +39,8 @@ namespace Soomla.Store.SpaceTrouble {
 		public const string TENSHIELD_PACK_PRODUCT_ID = "shield_10";
 
 		public const string FIFTEENSHIELD_PACK_PRODUCT_ID = "shield_15";
+
+		public const string REFILL_ENERGY_PRODUCT_ID = "fill_energy";
 
 		public const string ENDLESS_ENERGY_PRODUCT_ID = "endless_energy";	
 		
@@ -101,7 +103,13 @@ namespace Soomla.Store.SpaceTrouble {
 			"Cannae Drive", 												// name
 			"Endless energy",				 								// description
 			"endless_energy",												// item id
-			new PurchaseWithMarket(ENDLESS_ENERGY_PRODUCT_ID, 4.99));		// the way this virtual good is purchased
+			new PurchaseWithMarket(ENDLESS_ENERGY_PRODUCT_ID, 2.49));		// the way this virtual good is purchased
+
+		public static VirtualGood REFILL_ENERGY = new LifetimeVG(
+			"Refill Energy", 												// name
+			"Refill the energy",				 							// description
+			"refill_energy",												// item id
+			new PurchaseWithMarket(REFILL_ENERGY_PRODUCT_ID, 0.59));		// the way this virtual good is purchased
 	}
 	
 }

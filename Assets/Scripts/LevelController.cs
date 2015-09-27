@@ -46,7 +46,7 @@ public class LevelController : MonoBehaviour {
 		if(currentLevel == completedLevels){
 			PlayerPrefs.SetInt("completedLevels", completedLevels + 1);
 		}
-		if(currentLevel < MainMenu.maxLevel - 1){
+		if(currentLevel < GameController.maxLevel - 1){
 			PlayerPrefs.SetInt("levelToLoad", currentLevel + 1);
 			Application.LoadLevel(Application.loadedLevel);
 		}else

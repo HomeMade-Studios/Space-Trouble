@@ -11,11 +11,10 @@ public class ShieldController : MonoBehaviour {
 
 	void Start () {
 		shieldButton = GameObject.Find ("ShieldButton").GetComponent<Button>();
-		RefreshShieldQuantity();
+		InvokeRepeating("RefreshShieldQuantity", 0f, 1f);
 	}
 
-	void RefreshShieldQuantity(){
-		// SoomlaStore.RefreshInventory();
+	public void RefreshShieldQuantity(){
 		int shieldQuantity = StoreInventory.GetItemBalance("shield_currency");
 		shieldText.text = shieldQuantity.ToString();
 		if(shieldQuantity <= 0){

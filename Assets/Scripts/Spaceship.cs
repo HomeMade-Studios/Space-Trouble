@@ -21,11 +21,18 @@ public class Spaceship : MonoBehaviour {
 			transform.position = Vector3.Lerp(transform.position, new Vector3(0, -65f, 0), 2f * Time.deltaTime);
 			if(transform.position.y >= -70)
 				currentState = "idle";
+			if(LevelController.CheckInput()){
+				if(EnergyController.currentEnergy > 0 || EnergyController.endlessEnergy){
+					EnergyController.RechargeEnergy(-1);
+					Jump();
+					currentState = "jumping";
+				}
+			}
 			break;
 
 		case "idle":
 			if(LevelController.CheckInput()){
-				if(EnergyController.currentEnergy > 0){
+				if(EnergyController.currentEnergy > 0 || EnergyController.endlessEnergy){
 					EnergyController.RechargeEnergy(-1);
 					Jump();
 					currentState = "jumping";

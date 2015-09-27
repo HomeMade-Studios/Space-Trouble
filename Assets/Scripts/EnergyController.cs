@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System;
+using Soomla.Store;
 
 public class EnergyController : MonoBehaviour {
-	
-	public static int currentEnergy, maxEnergy;
+
 	public Text energyText, lastTimeText;
+	public static int currentEnergy, maxEnergy;
+	public static bool endlessEnergy;
 	static DateTime referDate;
 	static int lastEnergyRecharge;							//Second from referDate to last automated recharge
 	static int autoRechargeDeltaTime;						//Time in second before fuel is increased by 1
 	static int currentTime;								//Second since referDate (1/1/2000)
+
 
 	void Awake() {
 		maxEnergy = 30;
@@ -26,31 +30,51 @@ public class EnergyController : MonoBehaviour {
 		}
 	}
 
-	void Start () {
-		CheckEnergyUpgrade();
+	void Start() {
+//		StoreEvents.OnMarketPurchase += onMarketPurchase;
+		InvokeRepeating("CheckEnergyUpgrade", 0f, 1f);
 	}
 
 	void Update () {
-		CheckRechargeTime();
-		WriteEnergyText();
-		if(currentEnergy < maxEnergy){
+		if(!endlessEnergy){
+			CheckRechargeTime();
+		}
+		if(currentEnergy < maxEnergy && !endlessEnergy){
 			lastTimeText.text = timeToNextRecharge();
 		}
-		else
+		else{
 			lastTimeText.text = "";
-
+		}
+		WriteEnergyText();
 	}
 
+//	void onMarketPurchase(PurchasableVirtualItem pvi, string payload, Dictionary<string, string> extra) {
+//		if(pvi.ItemId == "fill_energy"){
+//			RechargeEnergy(maxEnergy);
+//		}
+//	}
+
 	public static void RechargeEnergy(int rechargeValue){    //Recharge energy by value
-		currentEnergy += rechargeValue;
-		if(currentEnergy > maxEnergy)
-			currentEnergy = maxEnergy;
-		PlayerPrefs.SetInt("energy", currentEnergy);
-		PlayerPrefs.SetInt("lastEnergyRecharge", lastEnergyRecharge);
+		if(!endlessEnergy){
+			currentEnergy += rechargeValue;
+			if(currentEnergy > maxEnergy)
+				currentEnergy = maxEnergy;
+			PlayerPrefs.SetInt("energy", currentEnergy);
+			PlayerPrefs.SetInt("lastEnergyRecharge", lastEnergyRecharge);
+		}
 	}
 
 	void CheckEnergyUpgrade(){								//Check if player bought some Upgrade and apply it
-
+		if(StoreInventory.GetItemBalance("endless_energy") > 0){
+			endlessEnergy = true;
+		}
+		else{
+			endlessEnergy = false;
+		}
+		if(StoreInventory.GetItemBalance("refill_energy") > 0){
+			RechargeEnergy(maxEnergy);
+			StoreInventory.TakeItem("refill_energy", 1);
+		}
 	}
 
 	void CheckRechargeTime(){								//Check if recharging time is passed, if true recharge by 1
@@ -69,7 +93,10 @@ public class EnergyController : MonoBehaviour {
 	}
 
 	void WriteEnergyText(){
-		energyText.text = currentEnergy.ToString() + "/" + maxEnergy.ToString();
+		if(!endlessEnergy)
+			energyText.text = currentEnergy.ToString() + "/" + maxEnergy.ToString();
+		else
+			energyText.text = "Infinite";
 	}
 
 	string timeToNextRecharge(){				//Return a string representing time to next recharge (mm:ss)

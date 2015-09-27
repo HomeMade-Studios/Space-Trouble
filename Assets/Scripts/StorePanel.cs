@@ -11,7 +11,21 @@ namespace Soomla.Store.SpaceTrouble {
 		public Button endlessEnergy, refillEnergy;
 
 		void OnEnable(){
+			InvokeRepeating("CheckBlockedItem", 0f, 1f);
+			CheckBlockedItem();
+		}
 
+		void OnDisable(){
+			CancelInvoke();
+		}
+
+		public void CheckBlockedItem(){
+			if(StoreInventory.GetItemBalance("endless_energy") > 0){
+				endlessEnergy.interactable = false;
+			}
+			if(EnergyController.currentEnergy >= EnergyController.maxEnergy){
+				refillEnergy.interactable = false;
+			}
 		}
 
 		public void PurchaseItem(string itemId){

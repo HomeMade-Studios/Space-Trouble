@@ -7,17 +7,10 @@ public class MainMenu : MonoBehaviour {
 
 	public Text levelReached;
 	public GameObject helpPanel, creditsPanel, storePanel;
-	public Toggle audioToggle;
-	public static int maxLevel = 31;
 
 	void Start(){
-		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
-			FirstTime();
-		}
-		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
-		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + maxLevel.ToString() + " Zone";
-		if(PlayerPrefs.GetInt("completedLevels", 0) == maxLevel){
+		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + GameController.maxLevel.ToString() + " Area";
+		if(PlayerPrefs.GetInt("completedLevels", 0) >= GameController.maxLevel){
 			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
 		}
 	}
@@ -32,19 +25,6 @@ public class MainMenu : MonoBehaviour {
 				CloseStorePanel();
 			}
 		}
-	}
-
-	void FirstTime(){
-		PlayerPrefs.DeleteAll();
-		EnergyController.RechargeEnergy(EnergyController.maxEnergy);
-		StoreInventory.GiveItem("shield_currency", 3);
-		OpenHelpPanel();
-		PlayerPrefs.SetInt("firstTime", 0);
-	}
-
-	public void InvertAudio(){
-		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-		PlayerPrefs.SetInt("AudioVolume", (int)AudioListener.volume);
 	}
 
 	public void OpenCreditsPanel() {
