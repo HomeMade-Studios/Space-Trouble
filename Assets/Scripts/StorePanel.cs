@@ -10,13 +10,8 @@ namespace Soomla.Store.SpaceTrouble {
 
 		public Button endlessEnergy, refillEnergy;
 
-		void OnEnable(){
-			InvokeRepeating("CheckBlockedItem", 0f, 1f);
+		void Start(){
 			CheckBlockedItem();
-		}
-
-		void OnDisable(){
-			CancelInvoke();
 		}
 
 		public void CheckBlockedItem(){
@@ -36,7 +31,8 @@ namespace Soomla.Store.SpaceTrouble {
 			catch(Exception e){
 				Debug.LogWarning("SOOMLA/UNITY" + e.Message);
 			}
-		}
+			CheckBlockedItem();
+        }
 	}
 
 }

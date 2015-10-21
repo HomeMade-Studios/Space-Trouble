@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
 		PlayerPrefs.DeleteAll();
 		EnergyController.RechargeEnergy(EnergyController.maxEnergy);
 		StoreInventory.GiveItem("shield_currency", 3);
-		mainMenu.OpenHelpPanel();
+		Popup.ShowHelpPopup();
 		PlayerPrefs.SetInt("firstTime", 0);
 	}
 
