@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
 
 	public MainMenu mainMenu;
 	public Toggle audioToggle;
-	public static int maxLevel = 30;
+	public static int maxLevel = 41;
 
 	void Start () {
 		PlayerPrefs.DeleteAll();			//Togliere
