@@ -10,11 +10,13 @@ public class GameController : MonoBehaviour {
 	public Toggle audioToggle;
 	public static int maxLevel = 41;
 
-	void Start () {
-		PlayerPrefs.DeleteAll();			//Togliere
-		if(PlayerPrefs.GetInt ("firstTime", 1) == 1){
+	void Awake() {
+		if (PlayerPrefs.GetInt("firstTime", 1) == 1) {
 			FirstTime();
 		}
+	}
+
+	void Start () {
 		SoomlaStore.RefreshMarketItemsDetails();
 		SoomlaStore.RefreshInventory();
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
@@ -27,7 +29,7 @@ public class GameController : MonoBehaviour {
 
 	void FirstTime(){
 		PlayerPrefs.DeleteAll();
-		EnergyController.RechargeEnergy(EnergyController.maxEnergy);
+		PlayerPrefs.SetInt("energy", EnergyController.maxEnergy);
 		StoreInventory.GiveItem("shield_currency", 3);
 		Popup.ShowHelpPopup();
 		PlayerPrefs.SetInt("firstTime", 0);
