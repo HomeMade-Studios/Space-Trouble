@@ -29,8 +29,8 @@ public class LevelController : MonoBehaviour {
 
 	void InstantiateDangerZone(){
 		int levelToLoad = PlayerPrefs.GetInt("levelToLoad", 0);
-		//if(levelToLoad != 0)
-		//	Instantiate(Resources.Load("DangerZone" + levelToLoad.ToString()), new Vector3(0,0,0), Quaternion.identity);
+		if (levelToLoad != 0)
+			Instantiate(Resources.Load("DangerZone" + levelToLoad.ToString()), new Vector3(0, 0, 0), Quaternion.identity);
 	}
 
 	void Spawn(){

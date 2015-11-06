@@ -8,15 +8,12 @@ public class GameController : MonoBehaviour {
 
 	public MainMenu mainMenu;
 	public Toggle audioToggle;
-	public static int maxLevel = 41;
+	public static int maxLevel = 40;
 
-	void Awake() {
+	void Start () {
 		if (PlayerPrefs.GetInt("firstTime", 1) == 1) {
 			FirstTime();
 		}
-	}
-
-	void Start () {
 		SoomlaStore.RefreshMarketItemsDetails();
 		SoomlaStore.RefreshInventory();
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
