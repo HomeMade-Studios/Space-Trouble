@@ -14,21 +14,16 @@ public class GameController : MonoBehaviour {
 		if (PlayerPrefs.GetInt("firstTime", 1) == 1) {
 			FirstTime();
 		}
-		//SoomlaStore.RefreshMarketItemsDetails();
-		//SoomlaStore.RefreshInventory();
 		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-	}
-
-	void Update () {
-	
 	}
 
 	void FirstTime(){
 		PlayerPrefs.DeleteAll();
 		PlayerPrefs.SetInt("energy", EnergyController.maxEnergy);
-		//StoreInventory.GiveItem("shield_currency", 3);
+		PlayerPrefs.SetInt("shield", 3);
 		Popup.ShowHelpPopup();
+		Debug.Log(EnergyController.maxEnergy);
 		PlayerPrefs.SetInt("firstTime", 0);
 	}
 

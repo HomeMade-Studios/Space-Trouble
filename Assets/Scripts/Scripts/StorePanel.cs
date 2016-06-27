@@ -15,21 +15,9 @@ namespace Soomla.Store.SpaceTrouble {
 		}
 
 		public void CheckBlockedItem(){
-			//if(StoreInventory.GetItemBalance("endless_energy") > 0){
-			//	endlessEnergy.interactable = false;
-			//}
+			if(PlayerPrefs.GetInt("endlessEnergy", 0) == 1){
+				endlessEnergy.interactable = false;
+			}
 		}
-
-		public void PurchaseItem(string itemId){
-			try{
-				Debug.Log("Attempt to purchase");
-				//StoreInventory.BuyItem(itemId);
-			}
-			catch(Exception e){
-				Debug.LogWarning("SOOMLA/UNITY" + e.Message);
-			}
-			CheckBlockedItem();
-        }
 	}
-
 }

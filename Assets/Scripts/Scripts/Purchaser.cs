@@ -57,7 +57,6 @@ namespace CompleteProject {
 
 			// Add a product to sell / restore by way of its identifier, associating the general identifier
 			// with its store-specific identifiers.
-			builder.AddProduct(shield1_productId, ProductType.Consumable);
 			builder.AddProduct(shield5_productId, ProductType.Consumable);
 			builder.AddProduct(shield10_productId, ProductType.Consumable);
 			// Continue adding the non-consumable product.
@@ -189,21 +188,18 @@ namespace CompleteProject {
 
 		public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
 			// A consumable product has been purchased by this user.
-			if (String.Equals(args.purchasedProduct.definition.id, shield1_productId, StringComparison.Ordinal)) {
-				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));// The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
-				//ScoreManager.score += 100;
-			}
 			if (String.Equals(args.purchasedProduct.definition.id, shield5_productId, StringComparison.Ordinal)) {
 				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));// The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
-				//ScoreManager.score += 100;
+				PlayerPrefs.SetInt("shield", PlayerPrefs.GetInt("shield", 0) + 5);
 			}
 			if (String.Equals(args.purchasedProduct.definition.id, shield10_productId, StringComparison.Ordinal)) {
 				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));// The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
-				//ScoreManager.score += 100;
+				PlayerPrefs.SetInt("shield", PlayerPrefs.GetInt("shield", 0) + 10);
 			}
 			// Or ... a non-consumable product has been purchased by this user.
 			else if (String.Equals(args.purchasedProduct.definition.id, endlessEnergy_productId, StringComparison.Ordinal)) {
 				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));// TODO: The non-consumable item has been successfully purchased, grant this item to the player.
+				PlayerPrefs.SetInt("endlessEnergy", 1);
 			}
 			// Or ... a subscription product has been purchased by this user.
 			//else if (String.Equals(args.purchasedProduct.definition.id, kProductIDSubscription, StringComparison.Ordinal)) {

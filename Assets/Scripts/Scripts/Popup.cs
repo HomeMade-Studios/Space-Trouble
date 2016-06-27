@@ -27,10 +27,6 @@ public class Popup : MonoBehaviour {
 
 	static void ShowPopup(GameObject popup) {
 
-		////Freeze Game
-		//Time.timeScale = 0f;
-		//Time.fixedDeltaTime = 0f;
-
 		GameObject openedMessage;
 		openedMessage = Instantiate(popup, Vector3.zero, Quaternion.identity) as GameObject;
 		openedMessage.transform.SetParent(GameObject.Find("Canvas").transform);
@@ -40,9 +36,6 @@ public class Popup : MonoBehaviour {
 
 	public void ClosePopup() {
 		Destroy(this.gameObject);
-		////Restart Game
-		//Time.timeScale = 1f;
-		//Time.fixedDeltaTime = 0.02f;
 	}
 
 	public void ToSpaceStation() {

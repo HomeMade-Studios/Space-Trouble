@@ -15,21 +15,22 @@ public class ShieldController : MonoBehaviour {
 	}
 
 	public void RefreshShieldQuantity(){
-		//int shieldQuantity = StoreInventory.GetItemBalance("shield_currency");
-		//shieldText.text = shieldQuantity.ToString();
-		//if(shieldQuantity <= 0){
-		//	LockShieldButton();
-		//}
+		int shieldQuantity = PlayerPrefs.GetInt("shield", 0);
+
+		shieldText.text = shieldQuantity.ToString();
+		if(shieldQuantity <= 0){
+			LockShieldButton();
+		}
 	}
 
 	public void UseShield(){
 		spaceship = GameObject.FindGameObjectWithTag("Player");
 		if(spaceship != null){
-			//if(StoreInventory.GetItemBalance("shield_currency") > 0){
-			//	StoreInventory.TakeItem("shield_currency", 1);
-			//	RefreshShieldQuantity();
-			//	ActivateShield();
-			//}
+			if (PlayerPrefs.GetInt("shield", 0) > 0) {
+				PlayerPrefs.SetInt("shield", PlayerPrefs.GetInt("shield", 0) - 1);
+				RefreshShieldQuantity();
+				ActivateShield();
+			}
 		}
 	}
 
@@ -44,7 +45,7 @@ public class ShieldController : MonoBehaviour {
 	public static void DisableShield() {
 		spaceship = GameObject.FindGameObjectWithTag("Player");
 		if(spaceship != null){
-			spaceship.transform.FindChild("Shield").gameObject.SetActive(true);
+			spaceship.transform.FindChild("Shield").gameObject.SetActive(false);
 			UnlockShieldButton();
 		}
 	}

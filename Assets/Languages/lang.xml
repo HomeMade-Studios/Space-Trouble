@@ -65,18 +65,20 @@ Marco Franceschini
 
 
 Un grazie speciale a:</string>
-		<string name="help">Benvenuto su Space Trouble, offerto dai ragazzi della HomeMade!
+		<string name="help">
+			Benvenuto nella Beta di Space Trouble, offerto dai ragazzi della HomeMade Studios!
 
-Regole:
-tocca lo schermo al momento giusto per attivare i propulsori dell'astronave e superare gli ostacoli senza toccarli per passare alla zona sucessiva, il tempismo è tutto in Space Trouble!
-Non ti preoccupare se la tua astronave si schianterà, perchè è in grado di ricostruirsi e tornare come nuova!
-Ogni partenza consumerà un po di energia, che verrà tuttavia rigenerata in pochi minuti.
-Inoltre, in casi di estrema difficoltà, puoi attivare gli scudi e diventare invulnerabile, superando la zona senza problemi. Ricorda però che potrai attivarlo solo un numero limitato di volte.
+			Regole:
+			tocca lo schermo al momento giusto per attivare i propulsori dell'astronave, superare gli ostacoli senza schiantarti e raggiungere la zona sucessiva, il tempismo è tutto in Space Trouble!
+			Non preoccuparti se la tua astronave dovesse schiantarsi, poichè é in grado di riassemblarsi e tornare come nuova!
+			Ogni salto consumerà un po' di energia, che verrà rigenerata nel tempo.
+			Inoltre, in casi di estrema difficoltà, puoi attivare gli scudi e diventare invulnerabile, superando la zona senza problemi. Ricorda però che le cariche dello scudo sono limitate.
 
-Per acquistare scudi, energia e potenziamenti per il tuo viaggio puoi recarti alla stazione spaziale in qualunque momento.
+			Per acquistare scudi e potenziamenti per il tuo viaggio puoi recarti alla stazione spaziale in qualunque momento.
 
-Per lasciare una recensione o per contattare gli sviluppatori in caso di bug e/o consigli puoi accedere alla pagina del gioco sul Play Store premendo il bottone quì sotto.
+			Per lasciare una recensione o per contattare gli sviluppatori in caso di bug e/o consigli puoi accedere alla pagina del gioco sul Play Store premendo il bottone quì sotto.
 
-Buon divertimento!</string>
+			Buon divertimento!
+		</string>
 	</Italian>
 </languages>
