@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Advertisements;
 
 public class Popup : MonoBehaviour {
 
@@ -49,5 +50,32 @@ public class Popup : MonoBehaviour {
 
 	public void OpenAlexandrZhelanovSoundCloud() {
 		Application.OpenURL("https://soundcloud.com/alexandr-zhelanov");
+	}
+
+	// UNITY ADS
+	public void ShowRewardedAd() {
+		if (Advertisement.IsReady("rewardedVideoZone")) {
+			var options = new ShowOptions { resultCallback = HandleShowResult };
+			Advertisement.Show("rewardedVideoZone", options);
+		}
+	}
+
+	private void HandleShowResult(ShowResult result) {
+		switch (result) {
+			case ShowResult.Finished:
+				Debug.Log("The ad was successfully shown.");
+
+				PlayerPrefs.SetInt("energy", PlayerPrefs.GetInt("energy", 0) + 3);
+
+				ClosePopup();
+
+				break;
+			case ShowResult.Skipped:
+				Debug.Log("The ad was skipped before reaching the end.");
+				break;
+			case ShowResult.Failed:
+				Debug.LogError("The ad failed to be shown.");
+				break;
+		}
 	}
 }
