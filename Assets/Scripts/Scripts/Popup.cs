@@ -54,9 +54,9 @@ public class Popup : MonoBehaviour {
 
 	// UNITY ADS
 	public void ShowRewardedAd() {
-		if (Advertisement.IsReady("rewardedVideoZone")) {
+		if (Advertisement.IsReady("rewardedVideo")) {
 			var options = new ShowOptions { resultCallback = HandleShowResult };
-			Advertisement.Show("rewardedVideoZone", options);
+			Advertisement.Show("rewardedVideo", options);
 		}
 	}
 
