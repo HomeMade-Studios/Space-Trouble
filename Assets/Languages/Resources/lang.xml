@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<languages>
+	
+	
+	<english>
+		<string name="playStoreLink">Play Store page</string>
+		<string name="close">Close</string>
+		<string name="play">PLAY</string>
+		<string name="areas">AREAS</string>
+		<string name="store">SPACE STATION</string>
+		<string name="credits">CREDITS</string>
+		<string name="mainTheme">Alexandr Zhelanov (Main theme)</string>
+		<string name="cannaeDriveDesc">Mount the NASA's prototype motor that can generate energy with no consumption. It allow you to have an unlimited supply of energy for your spaceship. No more wait!</string>
+		<string name="fiveShield">5 SHIELDS</string>
+		<string name="fiveShieldDesc">Buy 5 recharges for the defensive systems of the ship. Each charge, when used, creates a shield that prevents the destruction of your ship and let you pass the area.</string>
+		<string name="tenShield">10 SHIELDS</string>
+		<string name="tenShieldDesc">Buy 10 recharges for the defensive systems of the ship. Each charge, when used, creates a shield that prevents the destruction of your ship and let you pass the area.</string>
+		<string name="creditsText">HomeMade Studios:\n\nDaniel Ugolini\nMarcoFranceschini\n\nA special thanks to:</string>
+		<string name="noEnergyText">Your ship have no energy!\nWait some minutes, go to Space Station, or watch a short video to recharge!</string>
+		<string name="spaceStationButton">Space Station</string>
+		<string name="waitButton">Wait</string>
+		<string name="watchVideoButton">Watch Video</string>
+		<string name="help">Welcome to Space Trouble Beta, offered by HomeMade guys!
+
+			Rules:
+			tap the screen at the right time to activate the thrusters of the spaceship. Pass obstacles without touching them to advance to the next area, timing is everything in Space Trouble!
+			Don't worry if your ship crashed, because it's able to rebuild and return as new!
+			Each jump consume a little power, but it will be regenerated in some minutes.
+			In cases of extreme difficulty, you can activate shields and become invulnerable, passing the area without problems. Remember that shields charge are limited.
+
+			To purchase shields charge, and power ups for your trip you can go to the space station at any time.
+
+			To leave a review or to contact the developers about bugs and/or advice you can access the game's Play Store page by pressing the button below.
+
+			Have fun!
+		</string>
+		
+	</english>
+	
+	
+	<italian>
+		
+		<string name="playStoreLink">Pagina del Play Store!</string>
+		<string name="close">Chiudi</string>
+		<string name="play">GIOCA</string>
+		<string name="areas">AREE</string>
+		<string name="store">STAZIONE SPAZIALE</string>
+		<string name="credits">CREDITI</string>
+		<string name="mainTheme">Alexandr Zhelanov (Colonna sonora)</string>
+		<string name="cannaeDriveDesc">Monta il motore prototipo della NASA in grado di generare energia senza consumi. Ti permetterà di avere una scorta illimitata di energia per la tua astronave. Niente piu tempi di attesa!</string>
+		<string name="fiveShield">5 SCUDI</string>
+		<string name="fiveShieldDesc">Acquista 5 ricariche per i sistemi difensivi della nave. Ogni ricarica, quando utilizzata, genera uno scudo che previene la distruzione della tua nave e ti consente di superare la zona senza difficoltà.</string>
+		<string name="tenShield">10 SCUDI</string>
+		<string name="tenShieldDesc">Acquista 10 ricariche per i sistemi difensivi della nave. Ogni ricarica, quando utilizzata, genera uno scudo che previene la distruzione della tua nave e ti consente di superare la zona senza difficoltà.</string>
+		<string name="creditsText">HomeMade Studios:\n\nDaniel Ugolini\nMarco Franceschini\n\nUn grazie speciale a:</string>
+		<string name="noEnergyText">La tua nave è senza energia!\nAspetta un po' di tempo, passa alla Stazione Spaziale, oppure guarda un breve video per ricaricarti!</string>
+		<string name="spaceStationButton">Stazione Spaziale</string>
+		<string name="waitButton">Attendi</string>
+		<string name="watchVideoButton">Guarda Video</string>
+		
+		<string name="help">Benvenuto nella Beta di Space Trouble, offerto dai ragazzi della HomeMade!
+
+			Regole:
+			tocca lo schermo al momento giusto per attivare i propulsori dell'astronave. Supera gli ostacoli senza schiantarti per raggiungere la zona sucessiva, il tempismo è tutto in Space Trouble!
+			Non preoccuparti se la tua astronave dovesse schiantarsi, poiché è in grado di riassemblarsi e tornare come nuova!
+			Ogni salto consuma un po' di energia, che verrà rigenerata nel tempo.
+			In casi di estrema difficoltà, puoi attivare gli scudi e diventare invulnerabile, superando la zona senza problemi. Ricorda però che le cariche dello scudo sono limitate.
+
+			Per acquistare ricariche degli scudi e potenziamenti per il tuo viaggio puoi recarti alla stazione spaziale in qualunque momento.
+
+			Per lasciare una recensione o per contattare gli sviluppatori in caso di bug e/o consigli puoi accedere alla pagina del gioco sul Play Store premendo il bottone quì sotto.
+
+			Buon divertimento!
+		</string>
+		
+	</italian>
+	
+	
+</languages>

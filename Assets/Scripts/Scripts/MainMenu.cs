@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour {
 	public Text levelReached;
 
 	void Start(){
-		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + GameController.maxLevel.ToString() + " Area";
+		levelReached.text = (PlayerPrefs.GetInt("completedLevels", 0)).ToString() + " / " + GameController.maxLevel.ToString();
 		if(PlayerPrefs.GetInt("completedLevels", 0) >= GameController.maxLevel){
 			GameObject.Find("PlayButton").GetComponent<Button>().interactable = false;
 		}
@@ -17,7 +17,10 @@ public class MainMenu : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit();
+			if (GameObject.FindGameObjectWithTag("Popup") == null)
+				Application.Quit();
+			else
+				Destroy(GameObject.FindGameObjectWithTag("Popup"));
 		}
 	}
 

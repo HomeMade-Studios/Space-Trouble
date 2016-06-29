@@ -11,10 +11,16 @@ public class GameController : MonoBehaviour {
 	public static int maxLevel = 40;
 
 	void Start () {
+
+		if (Application.systemLanguage == SystemLanguage.Italian)
+			Language.Initialize("italian");
+		else
+			Language.Initialize("english");
+
 		if (PlayerPrefs.GetInt("firstTime", 1) == 1) {
 			FirstTime();
 		}
-		audioToggle.isOn = PlayerPrefs.GetInt("AudioVolume", 1) == 1 ? true : false;
+		audioToggle.isOn = PlayerPrefs.GetInt("audioVolume", 1) == 1 ? true : false;
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
 	}
 
@@ -29,6 +35,6 @@ public class GameController : MonoBehaviour {
 
 	public void InvertAudio(){
 		AudioListener.volume = 1 * audioToggle.isOn.GetHashCode();
-		PlayerPrefs.SetInt("AudioVolume", (int)AudioListener.volume);
+		PlayerPrefs.SetInt("audioVolume", (int)AudioListener.volume);
 	}
 }

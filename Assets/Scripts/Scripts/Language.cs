@@ -2,20 +2,23 @@
 using System.Collections;
 using System.Xml;
 
-public class Lang : MonoBehaviour{
+public static class Language {
 
-    public string language;
-    public Hashtable Strings;
+    public static string language;
+    public static Hashtable Strings;
 
 
-    void Awake()
+    public static void Initialize(string language)
     {
-        setLanguage(Application.dataPath+"/Languages/lang.xml", language);
+		setLanguage("lang", language);
     }
 
-	public void setLanguage (string path ,string language) {
+	public static void setLanguage (string path ,string language) {
+
+		TextAsset textAsset = Resources.Load(path, typeof(TextAsset)) as TextAsset;
+
 		XmlDocument xml  = new XmlDocument();
-		xml.Load(path);
+		xml.LoadXml(textAsset.text);
 		
 		Strings = new Hashtable();
 		XmlNode element = xml.SelectSingleNode("languages").SelectSingleNode(language);
@@ -26,7 +29,7 @@ public class Lang : MonoBehaviour{
                 if (xmlItem.Attributes != null)
                 {
                     Strings.Add(xmlItem.Attributes["name"].Value, xmlItem.InnerText);
-                }
+				}
                 else
                 {
                     Debug.LogError("Not every children of " + language + " have parameter 'name'");
@@ -37,7 +40,7 @@ public class Lang : MonoBehaviour{
 		}
 	}	
 
-	public string getString (string name) {
+	public static string getString (string name) {
 		if (!Strings.ContainsKey(name)) {
 			Debug.LogError("The specified string does not exist: " + name);
 			
