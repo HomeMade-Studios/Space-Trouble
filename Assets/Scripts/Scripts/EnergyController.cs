@@ -89,7 +89,7 @@ public class EnergyController : MonoBehaviour {
 		if(!endlessEnergy)
 			energyText.text = currentEnergy.ToString() + "/" + maxEnergy.ToString();
 		else
-			energyText.text = "Infinite";
+			energyText.text = "∞";
 	}
 
 	string timeToNextRecharge(){                //Return a string representing time to next recharge (mm:ss)

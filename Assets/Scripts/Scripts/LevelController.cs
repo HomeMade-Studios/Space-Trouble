@@ -30,8 +30,8 @@ public class LevelController : MonoBehaviour {
 
 	void InstantiateDangerZone(){
 		int levelToLoad = PlayerPrefs.GetInt("levelToLoad", 0);
-		if (levelToLoad != 0)
-			Instantiate(Resources.Load("DangerZone" + levelToLoad.ToString()), new Vector3(0, 0, 0), Quaternion.identity);
+		
+		Instantiate(Resources.Load("DangerZone" + levelToLoad.ToString()), new Vector3(0, 0, 0), Quaternion.identity);
 	}
 
 	void Spawn(){
@@ -73,7 +73,7 @@ public class LevelController : MonoBehaviour {
 			}
 			if (Input.touchCount > 0) {
 				if (Input.GetTouch(0).phase == TouchPhase.Began) {
-					if (!eventsystem.IsPointerOverGameObject())
+					if (Input.GetTouch(0).position.y < Screen.height / 100 * 80 && !eventsystem.IsPointerOverGameObject())
 						return true;
 				}
 			}
